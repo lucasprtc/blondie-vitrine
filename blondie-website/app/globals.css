@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {  
+  --font-primary: var(--font-eb-garamond);
+  --font-secondary: var(--font-helvetica-neue);
+
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 1rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.333rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.74rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 2.1rem;
+  --text-2xl--line-height: calc(2 / 1.8);
+  --text-3xl: 3.157rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 4.209rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 5.61rem;
+  --text-5xl--line-height: 1;
+}
+
+@layer utilities {
+  .font-primary {
+    font-family: var(--font-helvetica-neue);
+  }
+  .font-secondary {
+    font-family: var(--font-eb-garamond);
+  }
+}
+
+.grid-layout {
+  @apply grid grid-cols-6 md:grid-cols-12 gap-4 md:gap-6;
+}
+
+.grid-container {
+  @apply px-4 md:px-8;
+}
+
+.background {
+  position: relative;
+  background: #f4f4f4; /* ta vraie couleur */
+}
+
+.button {
+  @apply font-sans text-black underline underline-offset-2 font-medium cursor-pointer;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/tale1.png') repeat;
+  background-size: 200px 200px;
+  opacity: 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;  /* 👈 convertit le blanc en invisible */
+}

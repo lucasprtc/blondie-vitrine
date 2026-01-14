@@ -4,10 +4,19 @@ import localFont from "next/font/local";
 import Header from "./components/layout/Header";
 import "./globals.css";
 
-const ebGaramond = EB_Garamond({
-  subsets: ["latin"],
-  variable: "--font-eb-garamond",
-  display: "swap",
+// const ebGaramond = EB_Garamond({
+//   subsets: ["latin"],
+//   variable: "--font-eb-garamond",
+//   display: "swap",
+// });
+
+const ebGaramond = localFont({
+  src: '../public/fonts/ITC-Garamond-Std-Book-Narrow.woff2',
+  weight: '500',
+  style: 'normal',
+  variable: '--font-eb-garamond',
+  display: 'swap',
+  preload: true,
 });
 
 const helveticaNeue = localFont({
@@ -31,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ebGaramond.variable} ${helveticaNeue.variable} font-sans antialiased background`}>
+      <body className={`${ebGaramond.variable} ${helveticaNeue.variable} font-primary antialiased background`}>
         <Header />
         {children}
       </body>

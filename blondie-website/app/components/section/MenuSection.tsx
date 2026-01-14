@@ -1,78 +1,99 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import PizzaCard from "../ui/PizzaCard";
 
 const pizzas = [
     {
-        id: 'pepperoni',
+        id: 'House pie',
         image: '/pizzas/pepperonie.png',
-        title: 'Pepperoni',
+        title: 'House pie',
         ingredients: 'Tomato, mozzarella, pepperoni.',
         smallPrice: 5,
         largePrice: 9,
-        variant: 'right'
-    },
-    {
-        id: 'margherita',
-        image: '/pizzas/pepperonie.png',
-        title: 'Margherita',
-        ingredients: 'Tomato, mozzarella, basil.',
-        smallPrice: 6,
-        largePrice: 11,
         variant: 'left'
     },
     {
-        id: 'bbq-chicken',
+        id: 'pepperoni',
         image: '/pizzas/pepperonie.png',
-        title: 'BBQ Chicken',
-        ingredients: 'BBQ sauce, chicken, red onion, mozzarella.',
-        smallPrice: 7,
-        largePrice: 13,
+        title: 'pepperoni',
+        ingredients: 'Tomato, mozzarella, provolone, pepperoni, parmesan.',
+        smallPrice: 6,
+        largePrice: 11,
         variant: 'right'
     },
     {
-        id: 'four-cheese',
+        id: 'blondie',
         image: '/pizzas/pepperonie.png',
-        title: 'Four Cheese',
+        title: 'blondie',
+        ingredients: 'Mozzarella, calabrian chili, garlic, aleppo pepper, maldon.',
+        smallPrice: 7,
+        largePrice: 13,
+        variant: 'left'
+    },
+    {
+        id: 'mushroom',
+        image: '/pizzas/pepperonie.png',
+        title: 'mushroom',
         ingredients: 'Mozzarella, parmesan, gorgonzola, pecorino.',
         smallPrice: 8,
         largePrice: 14,
-        variant: 'left'
-    },
-    {
-        id: 'veggie',
-        image: '/pizzas/pepperonie.png',
-        title: 'Veggie Delight',
-        ingredients: 'Tomato, bell peppers, olives, mushrooms.',
-        smallPrice: 6,
-        largePrice: 12,
         variant: 'right'
     },
     {
-        id: 'hawaiian',
+        id: 'rossa',
         image: '/pizzas/pepperonie.png',
-        title: 'Hawaiian',
-        ingredients: 'Tomato, mozzarella, ham, pineapple.',
+        title: 'rossa',
+        ingredients: 'Tomato, garlic, oregano, black pepper sourdough bread crumbs.',
+        smallPrice: 6,
+        largePrice: 12,
+        variant: 'left'
+    },
+    {
+        id: 'special',
+        image: '/pizzas/pepperonie.png',
+        title: 'special',
+        ingredients: 'Seasonal ingredients.',
         smallPrice: 7,
         largePrice: 13,
-        variant: 'left'
+        variant: 'right'
     }
 ];
 
 const MenuSection = () => {
+    const [isLgUp, setIsLgUp] = useState(false);
+
+    useEffect(() => {
+        const checkWidth = () => {
+        setIsLgUp(window.innerWidth >= 1024); // Tailwind lg breakpoint = 1024px
+        };
+
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+        return () => window.removeEventListener("resize", checkWidth);
+    }, []);
     return (
-        <section className="grid-container grid-layout">
-            <h3 className="col-span-6 font-medium text-xl text-right tracking-[-0.03em]">Come taste our <span className="font-secondary">Pizza</span></h3>
-            <div className="col-span-6 grid grid-cols-1 gap-6">
-                {pizzas.map((p) => (
-                    <PizzaCard
-                        key={p.id}
-                        image={p.image}
-                        title={p.title}
-                        ingredients={p.ingredients}
-                        smallPrice={p.smallPrice}
-                        largePrice={p.largePrice}
-                        variant={p.variant}
-                    />
-                ))}
+        <section className="grid-container grid-layout mt-[60px] lg:mt-[100px]">
+            <h3 className="col-span-12 font-medium text-xl lg:text-3xl text-right tracking-[-0.03em] mb-5">Come taste our <span className="font-secondary">Pizza</span></h3>
+            <div className="col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-12">
+            {pizzas.map((p, index) => {
+                const cols = isLgUp ? 2 : 1;
+                const total = pizzas.length;
+                const isLastRow = index >= total - (total % cols === 0 ? cols : total % cols);
+
+                return (
+                <PizzaCard
+                    key={p.id}
+                    image={p.image}
+                    title={p.title}
+                    ingredients={p.ingredients}
+                    smallPrice={p.smallPrice}
+                    largePrice={p.largePrice}
+                    variant={!isLgUp ? p.variant : 'left'}
+                    noBorder={isLastRow} // On passe cette info au composant
+                />
+                );
+            })}
             </div>
         </section>
     );

@@ -4,6 +4,7 @@
   --font-primary: var(--font-eb-garamond);
   --font-secondary: var(--font-helvetica-neue);
 
+  --color-yellowAccent: #EEEFCF;
 
   --text-xs: 0.75rem;
   --text-xs--line-height: calc(1 / 0.75);
@@ -38,9 +39,14 @@
   @apply grid grid-cols-6 md:grid-cols-12 gap-4 md:gap-6;
 }
 
+.grid-layout.desktop {
+    @apply lg:gap-0;
+  }
+
 .grid-container {
   @apply px-4 md:px-8;
 }
+
 
 .background {
   position: relative;
@@ -51,7 +57,7 @@
   @apply font-sans text-black underline underline-offset-2 font-medium cursor-pointer;
 }
 
-.background::after {
+.background::before {
   content: "";
   position: absolute;
   inset: 0;

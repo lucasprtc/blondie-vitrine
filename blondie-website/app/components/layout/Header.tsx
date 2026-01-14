@@ -10,7 +10,7 @@ const Header = () => {
                 <button className="hidden md:block font-medium text-lg cursor-pointer">About</button>
                 <button className="hidden md:block font-medium text-lg cursor-pointer">Menu</button>
                 <button className="hidden md:block font-medium text-lg cursor-pointer">Find us</button>
-                <button className="button text-base md:text-lg">EN</button>
+                <button className="button font-primary text-base md:text-lg">EN</button>
             </div>
         </header>
     );

@@ -3,6 +3,7 @@ import { EB_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "./components/layout/Header";
 import "./globals.css";
+import Menu from "./components/layout/Menu";
 
 // const ebGaramond = EB_Garamond({
 //   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${ebGaramond.variable} ${helveticaNeue.variable} font-primary antialiased background`}>
         <Header />
+        <Menu />
         {children}
       </body>
     </html>

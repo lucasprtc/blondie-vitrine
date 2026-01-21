@@ -32,10 +32,12 @@ const HeroSection = () => {
             );
 
             // Animation du texte au-dessus de l'image : apparaît de derrière l'image
+            const isMobile = window.innerWidth < 720;
+            const delay = isMobile ? 0.4 : 1;
             gsap.fromTo(
                 textAboveImageRef.current,
                 { 
-                    y: 50,
+                    y: isMobile ? 20 : 50,
                     opacity: 0,
                     zIndex: 0
                 },
@@ -45,7 +47,7 @@ const HeroSection = () => {
                     zIndex: 10,
                     duration: 0.8,
                     ease: 'back.out(0.8)',
-                    delay: 1
+                    delay: delay
                 }
             );
 
@@ -164,7 +166,8 @@ const HeroSection = () => {
         <section className="px-4 lg:px-0 relative h-lvh lg:h-fit overflow-hidden">
             <div className="grid-layout items-center relative pt-[40%] lg:pt-[10%]">
                 <div ref={blackLine1Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
-                <AnimatedText 
+                <AnimatedText
+                    delay={0.1}
                     text="The real New York Slice experience in your city" 
                     className="col-span-5 lg:col-span-8 text-2xl lg:text-5xl lg:text-center text-black font-primary font-medium tracking-[-0.03em] break-normal lg:leading-22" 
                 />
@@ -215,7 +218,7 @@ const HeroSection = () => {
                 <img src="/food/pepperoni.png" alt="" className="max-w-[150px] absolute -top-[50%] -left-[20%] lg:hidden" />
 
             </div>
-            <img src="/food/origano.png" alt="" className="absolute -right-[5%] -bottom-[15%]" />
+            <img src="/food/origano.png" alt="" className="absolute max-w-[120px] lg:hidden -right-[5%] bottom-0" />
         </section>
     );
 }

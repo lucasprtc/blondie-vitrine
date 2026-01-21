@@ -10,7 +10,6 @@ const ContactSection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Vérifie la largeur de la fenêtre côté client
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
 
     handleResize(); // Vérifie dès le premier rendu côté client
@@ -20,7 +19,7 @@ const ContactSection = () => {
   }, []);
 
   return (
-    <section className="relative grid-container grid-layout pb-[30px] lg:pb-[60px] pt-[60px] lg:pt-[130px]">
+    <section className="relative grid-container grid-layout pb-20 lg:pb-[60px] pt-[60px] lg:pt-[130px]">
       {isMobile && (
         <h2 className="lg:hidden col-span-6 font-secondary text-center lg:text-left text-[2.5rem] lg:text-4xl tracking-[-0.03em] font-medium leading-12">
           Find us, Grab a slice,<br /> Enjoy the vibes.

@@ -74,29 +74,31 @@ const MenuSection = () => {
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
     return (
-        <section className="grid-container grid-layout mt-[60px] lg:mt-[100px]">
-            <TextAnimation className="col-span-12 mb-5 title">
+        <section className="grid-container grid-layout mt-10 lg:mt-[100px]">
+            <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
                 <h3>Come taste our <span className="font-secondary">Pizza</span></h3>
             </TextAnimation>
-            <div className="col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-12">
-            {pizzas.map((p, index) => {
-                const cols = isLgUp ? 2 : 1;
-                const total = pizzas.length;
-                const isLastRow = index >= total - (total % cols === 0 ? cols : total % cols);
+            <div className="relative col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-12">
+                <div className="hidden lg:block absolute h-full bg-black w-px right-1/2"></div>
+                {pizzas.map((p, index) => {
+                    const cols = isLgUp ? 2 : 1;
+                    const total = pizzas.length;
+                    const isLastRow = index >= total - (total % cols === 0 ? cols : total % cols);
+                    const isFirstRow = index < (total % cols === 0 ? cols : total % cols);
 
-                return (
-                <PizzaCard
-                    key={p.id}
-                    image={p.image}
-                    title={p.title}
-                    ingredients={p.ingredients}
-                    smallPrice={p.smallPrice}
-                    largePrice={p.largePrice}
-                    variant={!isLgUp ? p.variant : 'left'}
-                    noBorder={isLastRow} // On passe cette info au composant
-                />
-                );
-            })}
+                    return (
+                    <PizzaCard
+                        key={p.id}
+                        image={p.image}
+                        title={p.title}
+                        ingredients={p.ingredients}
+                        smallPrice={p.smallPrice}
+                        largePrice={p.largePrice}
+                        variant={!isLgUp ? p.variant : 'left'}
+                        noBorder={isLastRow} // On passe cette info au composant
+                    />
+                    );
+                })}
             </div>
         </section>
     );

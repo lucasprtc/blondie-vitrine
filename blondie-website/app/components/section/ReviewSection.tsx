@@ -38,7 +38,7 @@ const Reviews = [
 
 const ReviewSection  = () => {
     return (
-        <section className="grid-layout pt-[60px]">
+        <section className="grid-layout mt-10 lg:mt-[100px]">
             <TextAnimation className="grid-container col-span-6 lg:col-span-12 title">
                 <h3 className="">Your Words, <span className="font-secondary">our pride</span></h3>
             </TextAnimation>

@@ -77,7 +77,7 @@ const PizzaCard = ({
   );
 
   return (  
-    <div className={`flex flex-row items-center gap-4 py-8 ${noBorder ? '' : 'border-b border-black'}`}>
+    <div className={`flex flex-row items-center gap-4 py-6 lg:py-8 ${noBorder ? '' : 'border-b border-black'}`}>
       <div className={`flex flex-col col-span-3 gap-4 lg:gap-5 w-1/2 ${variant === "left" ? 'order-2' : 'order-1'}`}>
           <AnimatedText text={title} className="">
             <h3 className="font-secondary font-medium text-2xl lg:text-3xl tracking-[-0.03em] uppercase leading-6 lg:leading-10">

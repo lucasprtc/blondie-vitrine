@@ -4,18 +4,17 @@ import React, { useEffect, useRef, ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Enregistrer le plugin ScrollTrigger
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 interface AnimatedTextProps {
-  text?: string; // Maintenant optionnel
-  children?: ReactNode; // Pour accepter des éléments enfants
+  text?: string;
+  children?: ReactNode;
   className?: string;
   delay?: number;
   duration?: number;
-  start?: string; // Position de déclenchement (ex: "top 80%")
+  start?: string;
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -32,12 +31,14 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     const element = containerRef.current;
     if (!element) return;
 
-    // Animation GSAP avec ScrollTrigger
+    const isMobile = window.innerWidth < 720;
+    const yValue = isMobile ? 20 : 50;
+
     gsap.fromTo(
       element,
       {
         opacity: 0,
-        y: 50,
+        y: yValue,
       },
       {
         opacity: 1,
@@ -50,7 +51,6 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
           start: start,
           toggleActions: "play none none none",
           once: true,
-          // markers: true, // Décommenter pour debug
         },
       }
     );

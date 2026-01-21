@@ -61,6 +61,10 @@
   @apply pb-[0.1em];
 } 
 
+.title {
+  @apply text-xl lg:text-3xl text-right tracking-[-0.03em];
+}
+
 .background::before {
   content: "";
   position: absolute;

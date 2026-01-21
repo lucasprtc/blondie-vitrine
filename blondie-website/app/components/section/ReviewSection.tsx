@@ -1,4 +1,5 @@
 import InfiniteSLider from "../ui/InfiniteSlider";
+import TextAnimation from "../ui/TextAnimation";
 
 const Reviews = [
     {
@@ -38,7 +39,9 @@ const Reviews = [
 const ReviewSection  = () => {
     return (
         <section className="grid-layout pt-[60px]">
-            <h3 className="grid-container col-span-6 lg:col-span-12 font-medium text-right tracking-[-0.03em]"><span className="text-3xl">Your Words, </span><span className="font-secondary text-3xl">our pride</span></h3>
+            <TextAnimation className="grid-container col-span-6 lg:col-span-12 title">
+                <h3 className="">Your Words, <span className="font-secondary">our pride</span></h3>
+            </TextAnimation>
             <div className="col-span-6 lg:col-span-12 grid grid-cols-1 gap-6">
                 <InfiniteSLider comments={Reviews} />
             </div>

@@ -74,7 +74,7 @@ const MenuSection = () => {
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
     return (
-        <section className="grid-container grid-layout mt-10 lg:mt-[100px]">
+        <section id="menu" className="grid-container grid-layout mt-10 lg:mt-[100px]">
             <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
                 <h3>Come taste our <span className="font-secondary">Pizza</span></h3>
             </TextAnimation>

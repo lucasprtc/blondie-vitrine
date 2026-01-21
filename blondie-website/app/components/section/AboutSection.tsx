@@ -67,7 +67,7 @@ const AboutSection = () => {
     }, []);
 
     return (
-        <section ref={aboutSectionRef} className="relative grid-container grid-layout overflow-hidden py-6 lg:py-0">
+        <section id="about" ref={aboutSectionRef} className="relative grid-container grid-layout overflow-hidden py-6 lg:py-0">
             <div
                 ref={squareRef}
                 className="z-10 absolute top-[90px] lg:top-[200px] col-span-6 lg:col-start-4 p-4 w-full lg:w-fit flex flex-row items-center justify-between gap-4 lg:gap-8 bg-white rounded-[10px] shadow-2xl"

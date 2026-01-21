@@ -2,7 +2,7 @@
 
 const Header = () => {
     return (
-        <header className="fixed top-0 left-0 w-full grid-layout grid-container py-3 z-999">
+        <header className="fixed top-0 left-0 w-full grid-layout grid-container py-3 z-998">
             <div className="col-span-2">
                 <img src="logo-blondie.png" alt="" className="max-w-[150px] w-full" />
             </div>

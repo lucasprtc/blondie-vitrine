@@ -42,7 +42,7 @@ const ContactSection = () => {
   }, []);
 
   return (
-    <section ref={contactSection} className="relative grid-container grid-layout pb-20 lg:pb-[60px] pt-[60px] lg:pt-[130px]">
+    <section id="contact" ref={contactSection} className="relative grid-container grid-layout pb-20 lg:pb-[60px] pt-[60px] lg:pt-[130px]">
       {isMobile && (
         <AnimatedText className="lg:hidden col-span-6">
           <h2 className="font-secondary text-center lg:text-left text-[2.5rem] lg:text-4xl tracking-[-0.03em] font-medium leading-12">

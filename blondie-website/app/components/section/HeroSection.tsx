@@ -163,7 +163,7 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className="px-4 lg:px-0 relative h-lvh lg:h-fit overflow-hidden">
+        <section id='home' className="px-4 lg:px-0 relative h-lvh lg:h-fit overflow-hidden">
             <div className="grid-layout items-center relative pt-[40%] lg:pt-[10%]">
                 <div ref={blackLine1Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
                 <AnimatedText

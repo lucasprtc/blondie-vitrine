@@ -80,7 +80,7 @@ export default function InfiniteSLider({ comments }: Comments) {
   return (
     <div
       ref={containerRef}
-      className={`w-full overflow-x-hidden pt-6 lg:pt-10 relative flex items-center`}
+      className={`w-full overflow-hidden pt-6 lg:pt-10 relative flex items-center`}
     >
       <div ref={trackRef} className="flex gap-4 lg:gap-6 w-fit items-stretch">
         {doubledImages.map((comment, index) => (

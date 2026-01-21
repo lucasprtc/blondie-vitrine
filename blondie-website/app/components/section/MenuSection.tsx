@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PizzaCard from "../ui/PizzaCard";
+import TextAnimation from "../ui/TextAnimation";
 
 const pizzas = [
     {
@@ -74,7 +75,8 @@ const MenuSection = () => {
     }, []);
     return (
         <section className="grid-container grid-layout mt-[60px] lg:mt-[100px]">
-            <h3 className="col-span-12 font-medium text-xl lg:text-3xl text-right tracking-[-0.03em] mb-5">Come taste our <span className="font-secondary">Pizza</span></h3>
+            {/* <h3 className="col-span-12 font-medium text-xl lg:text-3xl text-right tracking-[-0.03em] mb-5">Come taste our <span className="font-secondary">Pizza</span></h3> */}
+            <TextAnimation text="Come taste our Pizza" className="col-span-12 font-medium text-xl lg:text-3xl text-right tracking-[-0.03em] mb-5"/>
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-12">
             {pizzas.map((p, index) => {
                 const cols = isLgUp ? 2 : 1;

@@ -57,6 +57,10 @@
   @apply font-sans text-black underline underline-offset-2 font-medium cursor-pointer;
 }
 
+.line {
+  @apply pb-[0.1em];
+} 
+
 .background::before {
   content: "";
   position: absolute;

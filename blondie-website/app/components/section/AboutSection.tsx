@@ -24,7 +24,7 @@ const AboutSection = () => {
         end: `bottom-=${window.innerWidth > 1024 ? 200 : 90} center+=${squareInfo!.height - 100}`,
         pin: square,
         scrub: 1,
-        markers: true
+        // markers: true
     }
     });
 
@@ -65,7 +65,7 @@ const AboutSection = () => {
                     </div>
                 </div>  
             </div>
-            <div className="col-span-3 col-start-1 grid grid-cols-3 gap-4">
+            <div className="col-spa n-3 col-start-1 grid grid-cols-3 gap-4">
             </div>
         </section>
     );

@@ -41,7 +41,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ebGaramond.variable} ${helveticaNeue.variable} font-primary antialiased background`}>
+      <body className={`${ebGaramond.variable} ${helveticaNeue.variable} font-primary antialiased relative`}>
+        <div className="absolute w-full h-full bg-repeat mix-blend-multiply pointer-events-none bg-size-[150px_150px] bg-[url('/tale1.png')]"></div>
         <Header />
         <Menu />
         {children}

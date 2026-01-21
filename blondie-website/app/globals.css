@@ -64,14 +64,3 @@
 .title {
   @apply text-xl lg:text-3xl text-right tracking-[-0.03em];
 }
-
-.background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('/tale1.png') repeat;
-  background-size: 200px 200px;
-  opacity: 100%;
-  pointer-events: none;
-  mix-blend-mode: multiply;  /* 👈 convertit le blanc en invisible */
-}

@@ -17,8 +17,32 @@ const PizzaCard = ({
   noBorder = false
 }) => {
     const imageRef = useRef(null);
+    const priceRef = useRef(null);
 
     useEffect(() => {
+    if (priceRef.current) {
+      gsap.fromTo(
+        priceRef.current,
+        {
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: priceRef.current,
+            start: "top 85%",
+            end: "top 65%",
+            once: true,
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
     if (imageRef.current) {
       gsap.fromTo(
         imageRef.current,
@@ -65,7 +89,7 @@ const PizzaCard = ({
           </AnimatedText>
 
 
-        <div className="flex items-center gap-2">
+        <div ref={priceRef} className="flex items-center gap-2">
           <div className="flex items-center gap-1">
             <img src="/icons/slice-pizza.png" alt="icon slice pizza" className="w-6 h-6 " />
             <span className="text-md font-semibold">{largePrice}€</span>

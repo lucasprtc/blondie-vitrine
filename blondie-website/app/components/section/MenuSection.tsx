@@ -66,7 +66,7 @@ const MenuSection = () => {
 
     useEffect(() => {
         const checkWidth = () => {
-        setIsLgUp(window.innerWidth >= 1024); // Tailwind lg breakpoint = 1024px
+        setIsLgUp(window.innerWidth >= 1024);
         };
 
         checkWidth();
@@ -95,7 +95,7 @@ const MenuSection = () => {
                         smallPrice={p.smallPrice}
                         largePrice={p.largePrice}
                         variant={!isLgUp ? p.variant : 'left'}
-                        noBorder={isLastRow} // On passe cette info au composant
+                        noBorder={isLastRow}
                     />
                     );
                 })}

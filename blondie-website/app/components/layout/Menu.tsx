@@ -39,7 +39,6 @@ const Menu: React.FC = () => {
     }, []);
 
     const openMenu = (): void => {
-        // Animation de l'overlay
         gsap.to(overlayRef.current, {
             opacity: 1,
             duration: 0.4,
@@ -91,7 +90,6 @@ const Menu: React.FC = () => {
     };
 
     const closeMenu = (): void => {
-        // Animation de fermeture de l'overlay
         gsap.to(overlayRef.current, {
             opacity: 0,
             duration: 0.3,
@@ -159,7 +157,6 @@ const Menu: React.FC = () => {
 
     return (
         <>
-            {/* Overlay gris */}
             <div
                 ref={overlayRef}
                 onClick={closeMenu}
@@ -190,7 +187,7 @@ const Menu: React.FC = () => {
                     <button
                         ref={(el) => { menuItemsRef.current[4] = el; }}
                         onClick={closeMenu}
-                        className="text-2xl w-full flex flex-col gap-1"
+                        className="text-2xl text-left w-full flex flex-col gap-1"
                     >
                         <span>Close</span>
                     </button>

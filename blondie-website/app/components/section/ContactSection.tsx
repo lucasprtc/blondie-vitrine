@@ -16,29 +16,29 @@ const ContactSection = () => {
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
 
-    handleResize(); // Vérifie dès le premier rendu côté client
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-            gsap.fromTo(line.current,
-            {
-                scaleY: 0,
-                transformOrigin: "bottom center"
-            },
-            {
-                scaleY: 1,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: contactSection.current,
-                    start: "top center",
-                    toggleActions: "play none none none"
-                }
-            }
-        );
+    gsap.fromTo(line.current,
+      {
+          scaleY: 0,
+          transformOrigin: "bottom center"
+      },
+      {
+          scaleY: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+              trigger: contactSection.current,
+              start: "top center",
+              toggleActions: "play none none none"
+          }
+      }
+);
   }, []);
 
   return (

@@ -31,12 +31,12 @@
     font-family: var(--font-helvetica-neue);
   }
   .font-secondary {
-    font-family: var(--font-eb-garamond);
+    font-family: var(--font-eb-garamond); 
   }
 }
 
 .grid-layout {
-  @apply grid grid-cols-6 md:grid-cols-12 gap-4 md:gap-6;
+  @apply grid grid-cols-6 lg:grid-cols-12 gap-4 lg:gap-6;
 }
 
 .grid-layout.desktop {
@@ -50,7 +50,7 @@
 
 .background {
   position: relative;
-  background: #f4f4f4; /* ta vraie couleur */
+  background: #f4f4f4;
 }
 
 .button {

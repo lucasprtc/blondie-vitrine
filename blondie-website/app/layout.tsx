@@ -5,12 +5,6 @@ import Header from "./components/layout/Header";
 import "./globals.css";
 import Menu from "./components/layout/Menu";
 
-// const ebGaramond = EB_Garamond({
-//   subsets: ["latin"],
-//   variable: "--font-eb-garamond",
-//   display: "swap",
-// });
-
 const ebGaramond = localFont({
   src: '../public/fonts/ITC-Garamond-Std-Book-Narrow.woff2',
   weight: '500',

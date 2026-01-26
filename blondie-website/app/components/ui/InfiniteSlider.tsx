@@ -31,13 +31,11 @@ export default function InfiniteSLider({ comments }: Comments) {
     const totalWidth = trackRef.current.scrollWidth / 2;
     const baseSpeed = 50;
 
-    // Set initial state for cards - hidden and below
     gsap.set(cardsRef.current, {
       y: 50,
       opacity: 0
     });
 
-    // Fade in animation on scroll
     gsap.to(cardsRef.current, {
       y: 0,
       opacity: 1,
@@ -51,7 +49,6 @@ export default function InfiniteSLider({ comments }: Comments) {
       }
     });
 
-    // Infinite scroll animation
     tweenRef.current = gsap.to(trackRef.current, {
       x: `-=${totalWidth}`,
       duration: totalWidth / baseSpeed,

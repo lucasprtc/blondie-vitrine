@@ -16,6 +16,9 @@ const HeroSection = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            const isMobile = window.innerWidth < 720;
+            const delay = isMobile ? 0.4 : 1;
+
             gsap.fromTo(
                 imageRef.current,
                 { 
@@ -31,9 +34,6 @@ const HeroSection = () => {
                 }
             );  
 
-            // Animation du texte au-dessus de l'image : apparaît de derrière l'image
-            const isMobile = window.innerWidth < 720;
-            const delay = isMobile ? 0.4 : 1;
             gsap.fromTo(
                 textAboveImageRef.current,
                 { 
@@ -51,7 +51,6 @@ const HeroSection = () => {
                 }
             );
 
-            // Animation des lignes noires : s'agrandissent de l'intérieur
             gsap.fromTo(
                 blackLine1Ref.current,
                 { 
@@ -98,7 +97,6 @@ const HeroSection = () => {
                 }
             );
 
-            // Basil (basilic) - vient du centre vers la gauche
             gsap.fromTo(
                 basilRef.current,
                 { 
@@ -118,7 +116,6 @@ const HeroSection = () => {
                 }
             );
 
-            // Mushroom (champignon) - vient du centre vers la droite/haut
             gsap.fromTo(
                 mushroomRef.current,
                 { 
@@ -138,7 +135,6 @@ const HeroSection = () => {
                 }
             );
 
-            // Origano (origan) - vient du centre vers la droite
             gsap.fromTo(
                 origanoRef.current,
                 { 
@@ -164,20 +160,20 @@ const HeroSection = () => {
 
     return (
         <section id='home' className="px-4 lg:px-0 relative h-lvh lg:h-fit overflow-hidden">
-            <div className="grid-layout items-center relative pt-[40%] lg:pt-[10%]">
+            <div className="grid-layout items-center relative pt-[40%] sm:pt-[25%] lg:pt-[10%]">
                 <div ref={blackLine1Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
                 <AnimatedText
                     delay={0.1}
                     text="The real New York Slice experience in your city" 
-                    className="col-span-5 lg:col-span-8 text-2xl lg:text-5xl lg:text-center text-black font-primary font-medium tracking-[-0.03em] break-normal lg:leading-22" 
+                    className="col-span-5 lg:col-span-8 text-2xl md:text-3xl lg:text-4xl xl:text-5xl lg:text-center text-black font-primary font-medium tracking-[-0.03em] break-normal lg:leading-18 xl:leading-22" 
                 />
                 <div ref={blackLine2Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
-                <img src="/food/mushroom.png" alt="" className="absolute max-w-[150px] -bottom-[40%] -right-[15%] -rotate-15 lg:hidden" />
+                <img src="/food/mushroom.png" alt="" className="absolute max-w-[150px] -bottom-[40%] md:-bottom-[20%] -right-[15%] md:-right-[10%] -rotate-15 lg:hidden" />
             </div>
-            <div className="relative grid grid-cols-6 md:grid-cols-12 gap-4 md:gap-6 lg:gap-y-1 mt-[40%] lg:mt-[60px]" >
+            <div className="relative grid grid-cols-6 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-y-1 mt-[40%] sm:mt-[15%] lg:mt-[60px]" >
                 <h2 
                     ref={textAboveImageRef}
-                    className="col-span-5 lg:col-start-5 lg:col-span-6 col-start-3 font-secondary text-xl text-black tracking-[-0.852px] relative"
+                    className="col-span-5 col-start-3 lg:col-start-4 lg:text-center lg:col-span-6  font-secondary text-xl lg:text-lg xl:text-xl text-black tracking-[-0.852px] relative"
                 >
                     Inspired by New York slice culture, crafted with local ingredients.
                 </h2>
@@ -215,7 +211,7 @@ const HeroSection = () => {
                     />
                 </div>
 
-                <img src="/food/pepperoni.png" alt="" className="max-w-[150px] absolute -top-[50%] -left-[20%] lg:hidden" />
+                <img src="/food/pepperoni.png" alt="" className="max-w-[150px] absolute -top-[50%] -left-[20%] md:-left-[10%] md:-top-[150%] lg:hidden" />
 
             </div>
             <img src="/food/origano.png" alt="" className="absolute max-w-[120px] lg:hidden -right-[5%] bottom-0" />

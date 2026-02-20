@@ -1,10 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import PizzaCard from "../ui/PizzaCard";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import TextAnimation from "../ui/TextAnimation";
 
-const pizzas = [
+interface Pizza {
+    id: string;
+    image: string;
+    title: string;
+    ingredients: string;
+    smallPrice: number;
+    largePrice: number;
+    variant: string;
+}
+
+const pizzas: Pizza[] = [
     {
         id: 'House pie',
         image: '/pizzas/pepperonie.png',
@@ -61,47 +72,66 @@ const pizzas = [
     }
 ];
 
-const MenuSection = () => {
-    const [isLgUp, setIsLgUp] = useState(false);
 
-    useEffect(() => {
-        const checkWidth = () => {
-        setIsLgUp(window.innerWidth >= 1024);
-        };
+const MenuItem = ({ pizza }: { pizza: Pizza }) => {
+    const container = useRef<HTMLDivElement>(null);
+    
+    const { contextSafe } = useGSAP({ scope: container });
 
-        checkWidth();
-        window.addEventListener("resize", checkWidth);
-        return () => window.removeEventListener("resize", checkWidth);
-    }, []);
+    const onEnter = contextSafe(() => {
+        gsap.to(".ingredient-img", {
+            y: 0,
+            opacity: 0.5,
+            duration: 0.6,
+            ease: "power3.out",
+            stagger: 0.05,
+            overwrite: true
+        });
+    });
+
+    const onLeave = contextSafe(() => {
+        gsap.to(".ingredient-img.from-top", { y: -150, opacity: 0, duration: 0.4, ease: "power2.in", overwrite: true });
+        gsap.to(".ingredient-img:not(.from-top)", { y: 150, opacity: 0, duration: 0.4, ease: "power2.in", overwrite: true });
+    });
+
     return (
-        <section id="menu" className="grid-container grid-layout mt-10 lg:mt-[100px]">
-            <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
-                <h3>Come taste our <span className="font-secondary">Pizza</span></h3>
-            </TextAnimation>
-            <div className="relative col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-12">
-                <div className="hidden lg:block absolute h-full bg-black w-px right-1/2"></div>
-                {pizzas.map((p, index) => {
-                    const cols = isLgUp ? 2 : 1;
-                    const total = pizzas.length;
-                    const isLastRow = index >= total - (total % cols === 0 ? cols : total % cols);
-                    const isFirstRow = index < (total % cols === 0 ? cols : total % cols);
+        <div 
+            ref={container}
+            onMouseEnter={onEnter}
+            onMouseLeave={onLeave}
+            className="group w-full flex justify-between h-[150px] py-6 relative overflow-hidden cursor-pointer border-b border-black last:border-b-0"
+        >
+            <img src="/food/pepper.png" alt="" className="ingredient-img from-top absolute z-0 w-[180px] -top-[50px] -left-[40px] opacity-0 translate-y-[-150px]" />
+            <img src="/food/basil.png" alt="" className="ingredient-img absolute z-0 w-[220px] -bottom-[50%] left-[30%] opacity-0 translate-y-[150px]" />
+            <img src="/food/pepperoni.png" alt="" className="ingredient-img from-top absolute z-0 w-[170px] -top-[60%] left-[60%] opacity-0 translate-y-[-150px]" />
+            <img src="/food/origano.png" alt="" className="ingredient-img absolute z-0 w-[150px] -bottom-[50%] -right-[2%] opacity-0 translate-y-[150px]" />
 
-                    return (
-                    <PizzaCard
-                        key={p.id}
-                        image={p.image}
-                        title={p.title}
-                        ingredients={p.ingredients}
-                        smallPrice={p.smallPrice}
-                        largePrice={p.largePrice}
-                        variant={!isLgUp ? p.variant : 'left'}
-                        noBorder={isLastRow}
-                    />
-                    );
-                })}
+            <div className="flex flex-col justify-between z-10">
+                <h3 className="text-3xl uppercase font-primary">{pizza.title}</h3>
+                <div className="flex gap-4 font-secondary text-lg">
+                    <p>{pizza.ingredients}</p>
+                    <p className="font-bold">{pizza.smallPrice}€ | {pizza.largePrice}€</p>
+                </div>
+            </div>
+            <img src={pizza.image} alt={pizza.title} className="z-10 object-contain" />
+        </div>
+    );
+};
+
+const MenuSection = () => {
+    return (
+        <section id="menu" className="grid-container grid-layout mt-10 lg:mt-[100px] px-4">
+            <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
+                <h3 className="text-4xl">Come taste our <span className="font-secondary italic">Pizza</span></h3>
+            </TextAnimation>
+            
+            <div className="col-span-12 flex flex-col border-t border-black">
+                {pizzas.map((pizza) => (
+                    <MenuItem key={pizza.id} pizza={pizza} />
+                ))}
             </div>
         </section>
     );
-}
+};
 
 export default MenuSection;

@@ -1,115 +1,127 @@
 "use client";
 
-import { useRef, useEffect,  useState } from "react";
-import AnimatedText from "../ui/TextAnimation";
+import { useRef, useEffect } from "react";
+import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 
-
-gsap.registerPlugin(ScrollTrigger);
-
-const ContactSection = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const line = useRef<HTMLDivElement>(null);
-  const contactSection = useRef<HTMLElement>(null);
+const ContactSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textBlackRef = useRef<HTMLDivElement>(null);
+  const textWhiteRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    const ctx = gsap.context(() => {
+      
+      const updateClipPath = () => {
+        if (!imageRef.current || !textWhiteRef.current) return;
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+        const imgRect = imageRef.current.getBoundingClientRect();
+        const txtRect = textWhiteRef.current.getBoundingClientRect();
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+        // rect coordinate
+        const top = imgRect.top - txtRect.top;
+        const left = imgRect.left - txtRect.left;
+        const bottom = imgRect.bottom - txtRect.top;
+        const right = imgRect.right - txtRect.left;
 
-  useEffect(() => {
-    gsap.fromTo(line.current,
-      {
-          scaleY: 0,
-          transformOrigin: "bottom center"
-      },
-      {
-          scaleY: 1,
-          duration: 1,
+        gsap.set(textWhiteRef.current, {
+          clipPath: `inset(${top}px ${txtRect.width - right}px ${txtRect.height - bottom}px ${left}px)`
+        });
+      };
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const { clientX } = e;
+        const { innerWidth } = window;
+        const xPos = (clientX / innerWidth) - 0.5;
+
+        // image animation
+        gsap.to(imageRef.current, {
+          x: xPos * 340,
+          duration: 1.2,
+          ease: "power4.out",
+          onUpdate: updateClipPath
+        });
+
+        // text animation
+        gsap.to([textBlackRef.current, textWhiteRef.current], {
+          x: xPos * 220,
+          duration: 1.4,
           ease: "power3.out",
-          scrollTrigger: {
-              trigger: contactSection.current,
-              start: "top center",
-              toggleActions: "play none none none"
-          }
-      }
-);
+          onUpdate: updateClipPath
+        });
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      updateClipPath();
+
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    });
+
+    return () => ctx.revert();
   }, []);
+
+ const RenderText = ({ colorClass, reference }: { 
+    colorClass: string, 
+    reference: React.RefObject<HTMLDivElement | null> 
+  }) => (
+    <div 
+      ref={reference}
+      className={`absolute left-[45%] z-20 pointer-events-none select-none ${colorClass} whitespace-nowrap`}
+    >
+      <h2 className="text-5xl md:text-4xl font-serif leading-[0.85] uppercase tracking-tighter">
+        <span className="font-primary">Find us, </span><br />
+        <span className="font-primary">Grab a slice, </span><br />
+        <span className="italic normal-case font-light">Enjoy the vibes.</span>
+      </h2>
+    </div>
+  );
 
   return (
-    <section id="contact" ref={contactSection} className="relative grid-container grid-layout pb-20 lg:pb-[60px] pt-[60px] lg:pt-[130px]">
-      {isMobile && (
-        <AnimatedText className="lg:hidden col-span-6">
-          <h2 className="font-secondary text-center lg:text-left text-[2.5rem] lg:text-4xl tracking-[-0.03em] font-medium leading-12">
-            Find us, Grab a slice,<br /> Enjoy the vibes.
-          </h2>
-        </AnimatedText>
-      )}
-      {isMobile && ( 
-        <AnimatedText className="col-span-4 col-start-2 mt-4">
-          <img
+    <section className="relative w-full h-screen flex flex-col justify-between overflow-hidden grid-container">
+
+      <div ref={containerRef} className="relative flex-grow flex items-center justify-center">
+        <div className="relative w-full max-w-6xl h-full flex items-center px-10">          
+          <RenderText colorClass="text-black" reference={textBlackRef} />
+          <div 
+            ref={imageRef} 
+            className="relative w-[55%] aspect-[4/3] z-10 overflow-hidden"
+          >
+            <Image
               src="/picture/contact-1.png"
-              alt="Contact"
-              className="col-span-4 col-start-2 w-full mt-4"
-          />
-        </AnimatedText>       
-      )}
-      <div className="col-span-6 lg:col-span-5 col-start-1 flex flex-col lg:justify-between gap-2 mt-4 lg:mt-0">
-        <AnimatedText>
-          <h2 className="hidden lg:block font-secondary text-4xl">
-            Find us, Grab a slice,<br /> Enjoy the vibes.
-          </h2>
-        </AnimatedText>
-
-        <div className="flex flex-col gap-2 lg:gap-4">
-          <AnimatedText>
-            <div className="w-full flex justify-between items-center font-primary">
-              <p className="text-sm lg:text-xl font-medium lg:leading-8">
-                Vaasankatu 8,<br />00500 Helsinki
-              </p>
-              <button className="underline lg:text-xl underline-offset-4">Get direction</button>
-            </div>
-          </AnimatedText>
-
-          <AnimatedText delay={0.1} start="top 80%">
-              <div className="w-full flex justify-between items-center font-primary text-sm lg:text-xl font-medium">
-                <p>Tue-Sat</p>
-                <p>11.30-22</p>
-              </div>
-              <div className="w-full flex justify-between items-center font-primary text-sm lg:text-xl font-medium">
-                <p>Sun</p>
-                <p>13-19</p>
-              </div>
-              <div className="w-full flex justify-between items-center font-primary text-sm lg:text-xl font-medium">
-                <p>Mon</p>
-                <p className="uppercase">closed</p>
-              </div>
-          </AnimatedText>
-
-          <AnimatedText delay={0.2} start="top 95%">
-            <div className="w-full flex justify-between items-center font-primary text-sm lg:text-xl font-medium">
-              <p>Card Only</p>
-              <p>No reservation</p>
-            </div>
-          </AnimatedText>
+              alt="Restaurant"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <RenderText colorClass="text-white z-30" reference={textWhiteRef} />
         </div>
       </div>
-      {!isMobile && <div ref={line} className="w-px bg-black h-full col-span-1 lg:col-span-1 lg:col-start-6 mx-6 lg:mx-12 self-center"></div>}
-      {!isMobile && (
-        <AnimatedText delay={0.2} className="col-span-6 col-start-7">          
-          <img
-              src="/picture/contact-1.png"
-              alt="Contact"
-              className="w-full"
-          />
-        </AnimatedText>
-      )}
+      <div className="grid-layout w-full items-end pb-8 z-30">
+        <div className="col-span-2 col-start-1">
+          <p className="text-sm uppercase font-medium">Vaasankatu 8,<br />00500 Helsinki</p>
+        </div>
+        
+        <div className="col-span-4 col-start-5 flex flex-col text-sm uppercase">
+          <div className="flex justify-between">
+            <span>Tue-Sat</span>
+            <span>11.30-22</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Sun</span>
+            <span>13-19</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Mon</span>
+            <span>CLOSED</span>
+          </div>
+        </div>
 
+        <div className="col-span-2 col-start-11 flex flex-col text-right text-sm uppercase">
+          <p>Card only</p>
+          <p>No reservation</p>
+        </div>
+      </div>
     </section>
   );
 };

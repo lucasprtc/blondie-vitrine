@@ -203,7 +203,7 @@ const Menu: React.FC = () => {
                 <button
                     ref={menuButtonRef}
                     onClick={openMenu}
-                    className="pl-5 font-primary text-2xl underline underline-offset-4 mb-5 pointer-events-auto"
+                    className="pl-4 font-primary text-2xl underline underline-offset-4 mb-5 pointer-events-auto"
                 >
                     Menu
                 </button>

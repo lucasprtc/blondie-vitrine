@@ -62,5 +62,9 @@
 } 
 
 .title {
-  @apply text-xl lg:text-3xl text-right tracking-[-0.03em];
+  @apply text-2xl lg:text-3xl text-right tracking-[-0.03em];
+}
+
+.ingredient-img {
+  @apply hidden md:block
 }

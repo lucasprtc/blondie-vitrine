@@ -107,8 +107,8 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
             <img src="/food/origano.png" alt="" className="ingredient-img absolute z-0 w-[150px] -bottom-[50%] -right-[2%] opacity-0 translate-y-[150px]" />
 
             <div className="flex flex-col justify-between z-10">
-                <h3 className="text-3xl uppercase font-primary">{pizza.title}</h3>
-                <div className="flex gap-4 font-secondary text-lg">
+                <h3 className="text-xl md:text-3xl uppercase font-primary">{pizza.title}</h3>
+                <div className="flex flex-col md:flex-row gap-1 md:gap-4 font-secondary text-base md:text-lg">
                     <p>{pizza.ingredients}</p>
                     <p className="font-bold">{pizza.smallPrice}€ | {pizza.largePrice}€</p>
                 </div>
@@ -122,7 +122,7 @@ const MenuSection = () => {
     return (
         <section id="menu" className="grid-container grid-layout mt-10 lg:mt-[100px] px-4">
             <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
-                <h3 className="text-4xl">Come taste our <span className="font-secondary italic">Pizza</span></h3>
+                <h3 className="">Come taste our <span className="font-secondary italic">Pizza</span></h3>
             </TextAnimation>
             
             <div className="col-span-12 flex flex-col border-t border-black">

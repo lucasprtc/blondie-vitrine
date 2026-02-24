@@ -42,7 +42,6 @@ const ContactSection: React.FC = () => {
             trigger: containerRef.current,
             start: "40% 50%",
             toggleActions: "play none none none",
-            markers: true
           },
           y: 30,
           opacity: 0,

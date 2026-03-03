@@ -129,7 +129,7 @@ const HeroSection = () => {
                         <img ref={basilImg} src="/food/basil.png" alt="" className="max-w-[175px] w-full -scale-y-100 transform rotate-180 opacity-0" />
                     </div>
 
-                    <div ref={mushroomWrap} className="absolute -top-[5%] -right-[10%] z-0">
+                    <div ref={mushroomWrap} className="absolute top-[50%] md:-top-[5%] -right-[10%] z-0">
                         <img ref={mushroomImg} src="/food/mushroom.png" alt="" className="max-w-[150px] rotate-35 opacity-0" />
                     </div>
 
@@ -139,7 +139,7 @@ const HeroSection = () => {
                 </div>
 
                 <img src="/food/pepperoni.png" alt="" className="max-w-[150px] absolute -top-[50%] -left-[20%] md:-left-[10%] md:-top-[150%] lg:hidden" />
-                <img src="/food/mushroom.png" alt="" className="absolute max-w-[150px] -bottom-[40%] md:-bottom-[20%] -right-[15%] md:-right-[10%] -rotate-15 lg:hidden" />
+                <img src="/food/mushroom.png" alt="" className="absolute max-w-[150px] -top-[22vh] md:-bottom-[20%] -right-[15%] md:-right-[10%] -rotate-15 lg:hidden" />
             </div>
             <img src="/food/origano.png" alt="" className="absolute max-w-[120px] lg:hidden -right-[5%] bottom-0" />
         </section>

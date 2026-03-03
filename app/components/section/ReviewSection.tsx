@@ -74,14 +74,14 @@ const ReviewSection = () => {
     }, { scope: containerRef }); 
     
     return (
-        <section ref={containerRef} className="mt-10 lg:mt-[100px] flex flex-col justify-center items-center h-dvh relative overflow-hidden">
-            <h2 className="text-2xl md:text-5xl mb-10">
+        <section ref={containerRef} className="mt-10  flex flex-col justify-center items-center h-screen relative overflow-hidden">
+            <h2 className="text-2xl lg:text-5xl mb-[5vh]">
                 Your Words, <span className="font-secondary">our pride</span>
             </h2>
 
-            <div className="md:px-20 absolute top-[14vh] md:top-[6vh] left-0 w-full flex justify-between">
+            <div className="lg:px-20 absolute top-[6vh] md:top-[4vh] left-0 w-full flex justify-between">
                 {topReviews.map((review, index) => (
-                    <div key={`top-${index}`} style={{ transform: `rotate(${review.degree}deg)` }} className="review-card-anim">
+                    <div key={`top-${index}`} style={{ transform: `rotate(${review.degree}deg)` }} className="review-card-anim  ">
                         <ReviewCard 
                             description={review.description} 
                             author={review.name} 
@@ -91,7 +91,7 @@ const ReviewSection = () => {
                 ))}
             </div>
 
-            <div className="md:max-w-[70vw] absolute bottom-[12vh] md:bottom-[8vh] md:left-1/2 md:-translate-x-1/2 w-full flex justify-between">
+            <div className="md:max-w-[70vw] absolute bottom-[6vh] md:bottom-[8vh] md:left-1/2 md:-translate-x-1/2 w-full flex justify-between">
                 {bottomReviews.map((review, index) => (
                     <div key={`bottom-${index}`} style={{ transform: `rotate(${review.degree}deg)` }} className="review-card-anim">
                         <ReviewCard 

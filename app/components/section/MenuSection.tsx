@@ -154,7 +154,7 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
                 <div className="flex flex-col justify-between z-10">
                     <h3 className="text-xl md:text-3xl uppercase font-primary spacing-primary">{pizza.title}</h3>
                     <div className="flex flex-col md:flex-row gap-1 md:gap-4 font-secondary text-base md:text-lg spacing-primary">
-                        <p>{pizza.ingredients}</p>
+                        <p className="max-w-[60vw] md:max-w-none">{pizza.ingredients}</p>
                         <p className="font-bold">{pizza.smallPrice}€ | {pizza.largePrice}€</p>
                     </div>
                 </div>

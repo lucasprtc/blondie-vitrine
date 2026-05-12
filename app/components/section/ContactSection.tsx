@@ -124,7 +124,7 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
 
-      <div ref={footerRef} className="grid-layout w-full items-end pb-20 md:pb-8 z-30 spacing-primary">
+      <div ref={footerRef} className="grid-layout w-full items-end pb-20 md:pb-4 z-30 spacing-primary">
         <div className="col-span-6 md:col-span-2 col-start-1 flex flex-row justify-between md:flex-col md:justify-start">
           <a href="https://maps.app.goo.gl/wUYm2ZPjUj6wvgmY9" className="">
             <p className="text-sm uppercase font-medium">Vaasankatu 8,</p>
@@ -153,9 +153,11 @@ const ContactSection: React.FC = () => {
         </div>
 
         <div className="col-span-6 flex flex-row md:flex-col justify-between md:justify-start md:col-span-2 md:col-start-11 text-right text-sm uppercase">
-          <p>Card only</p>
-          <p>No reservation</p>
-          <a href="https://www.instagram.com/blondievaasankatu/" className="text-sm uppercase font-medium">Find us on <span className="underline">Instagram</span></a>
+          <div className="flex flex-col justify-start gap-0">
+            <p className="text-left md:text-right">Card only</p>
+            <p className="text-left md:text-right">No reservation</p>
+          </div>
+          <a href="https://www.instagram.com/blondievaasankatu/" className="text-sm uppercase font-medium max-w-[40vw] md:max-w-none">Find us on <span className="underline">Instagram</span></a>
         </div>
       </div>
     </section>

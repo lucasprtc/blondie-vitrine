@@ -31,8 +31,8 @@ const HeroSection = () => {
             const delayBase = isMobile ? 0.4 : 1;
 
             //  --- ENTER ANIMATION ---
-            
-            gsap.fromTo(imageRef.current, 
+
+            gsap.fromTo(imageRef.current,
                 { y: 100, opacity: 0 },
                 { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.5 }
             );
@@ -52,10 +52,10 @@ const HeroSection = () => {
 
             // food animation
             const ingredients = [
-                { ref: pepperImg, x: 100, d: 1.4 },
-                { ref: basilImg, x: 80, d: 1.5 },
-                { ref: mushroomImg, x: -100, d: 1.6 },
-                { ref: origanoImg, x: -80, d: 1.7 },
+                { ref: pepperImg, x: 100, d: 1 },
+                { ref: basilImg, x: 80, d: 1.1 },
+                { ref: mushroomImg, x: -100, d: 1.2 },
+                { ref: origanoImg, x: -80, d: 1.3 },
             ];
 
             ingredients.forEach(item => {
@@ -70,16 +70,16 @@ const HeroSection = () => {
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top top", 
-                        end: "bottom top", 
-                        scrub: true, 
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: true,
                     }
                 });
 
-                tl.to(pepperWrap.current, { y: -150, x: -70, ease: "none" }, 0)
-                  .to(basilWrap.current, { y: -250, x: -60, ease: "none" }, 0)
-                  .to(mushroomWrap.current, { y: -18e0, x: 75, ease: "none" }, 0)
-                  .to(origanoWrap.current, { y: -230, x: 60, ease: "none" }, 0);
+                tl.to(pepperWrap.current, { y: -150, x: -70, rotate: 23, scale: 1.2, ease: "none" }, 0)
+                    .to(basilWrap.current, { y: -250, x: -60, rotate: -32, scale: 1.2, ease: "none" }, 0)
+                    .to(mushroomWrap.current, { y: -180, x: 75, rotate: 19, scale: 1.2, ease: "none" }, 0)
+                    .to(origanoWrap.current, { y: -230, x: 60, rotate: -26, scale: 1.2, ease: "none" }, 0);
             }
 
         }, sectionRef);
@@ -88,37 +88,37 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section 
-            ref={sectionRef} 
-            id='home' 
+        <section
+            ref={sectionRef}
+            id='home'
             className="px-4 lg:px-0 relative h-lvh lg:h-fit overflow-hidden"
         >
             {/* Header Layout */}
             <div className="grid-layout items-center relative pt-[40%] sm:pt-[25%] lg:pt-[10%]">
-                <div ref={blackLine1Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
+                <div ref={blackLine1Ref} className="scale-x-0 hidden lg:block h-px bg-black col-span-2"></div>
                 <AnimatedText
                     delay={0.1}
-                    text="The real New York Slice experience in your city" 
-                    className="col-span-5 lg:col-span-8 text-2xl md:text-3xl lg:text-4xl xl:text-5xl lg:text-center text-black font-primary font-medium tracking-[-0.03em] break-normal lg:leading-18 xl:leading-22" 
+                    text="The real New York Slice experience in Helsinki"
+                    className="col-span-5 lg:col-span-8 text-2xl md:text-3xl lg:text-4xl xl:text-5xl lg:text-center text-black font-primary font-medium tracking-[-0.03em] break-normal lg:leading-18 xl:leading-22"
                 />
-                <div ref={blackLine2Ref} className="hidden lg:block h-px bg-black col-span-2"></div>
+                <div ref={blackLine2Ref} className="scale-x-0 hidden lg:block h-px bg-black col-span-2"></div>
             </div>
 
             {/* Content Area */}
             <div className="relative grid grid-cols-6 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-y-1 mt-[40%] sm:mt-[15%] lg:mt-[60px]" >
-                <h2 
+                <h2
                     ref={textAboveImageRef}
-                    className="col-span-5 col-start-3 lg:col-start-4 lg:text-center lg:col-span-6 font-secondary text-xl lg:text-lg xl:text-xl text-black tracking-[-0.852px] relative z-10"
+                    className="col-span-5 opacity-0 col-start-3 lg:col-start-4 lg:text-center lg:col-span-6 font-secondary text-xl lg:text-lg xl:text-xl text-black tracking-[-0.852px] relative z-10"
                 >
                     Inspired by New York slice culture, crafted with local ingredients.
                 </h2>
 
                 <div className="hidden lg:block relative col-span-6 col-start-4">
-                    <img 
+                    <img
                         ref={imageRef}
-                        src="/picture/homepage-1.png" 
-                        alt="Pizza Slice" 
-                        className="w-full object-cover z-20 relative" 
+                        src="/picture/homepage-1.png"
+                        alt="Pizza Slice"
+                        className="w-full object-cover z-20 relative opacity-0"
                     />
 
                     <div ref={pepperWrap} className="absolute -top-[5%] -left-[15%] z-0">

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Header from "./components/layout/Header";
 import "./globals.css";
 import Menu from "./components/layout/Menu";
+import { LenisProvider } from "./components/providers/LenisProvider";
 
 const ebGaramond = localFont({
   src: '../public/fonts/ITC-Garamond-Std-Book-Narrow.woff2',
@@ -39,7 +40,9 @@ export default function RootLayout({
         <div className="absolute w-full h-full bg-repeat mix-blend-multiply pointer-events-none bg-size-[150px_150px] bg-[url('/tale1.png')]"></div>
         <Header />
         <Menu />
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

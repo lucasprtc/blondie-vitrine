@@ -17,82 +17,82 @@ const ContactSection: React.FC = () => {
   const isMobile = !!useIsMobile();
 
   useEffect(() => {
-      const ctx = gsap.context(() => {
-        
-        const updateClipPath = () => {
-          if (!imageRef.current || !textWhiteRef.current) return;
-          const imgRect = imageRef.current.getBoundingClientRect();
-          const txtRect = textWhiteRef.current.getBoundingClientRect();
+    const ctx = gsap.context(() => {
 
-          const top = imgRect.top - txtRect.top;
-          const left = imgRect.left - txtRect.left;
-          const bottom = imgRect.bottom - txtRect.top;
-          const right = imgRect.right - txtRect.left;
+      const updateClipPath = () => {
+        if (!imageRef.current || !textWhiteRef.current) return;
+        const imgRect = imageRef.current.getBoundingClientRect();
+        const txtRect = textWhiteRef.current.getBoundingClientRect();
 
-          gsap.set(textWhiteRef.current, {
-            clipPath: `inset(${top}px ${txtRect.width - right}px ${txtRect.height - bottom}px ${left}px)`
+        const top = imgRect.top - txtRect.top;
+        const left = imgRect.left - txtRect.left;
+        const bottom = imgRect.bottom - txtRect.top;
+        const right = imgRect.right - txtRect.left;
+
+        gsap.set(textWhiteRef.current, {
+          clipPath: `inset(${top}px ${txtRect.width - right}px ${txtRect.height - bottom}px ${left}px)`
+        });
+      };
+
+      setTimeout(updateClipPath, 100);
+
+      if (footerRef.current) {
+        gsap.from(footerRef.current.children, {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "40% 50%",
+            toggleActions: "play none none none",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+        });
+      }
+
+      window.addEventListener("resize", updateClipPath);
+
+      if (!isMobile) {
+        const handleMouseMove = (e: MouseEvent) => {
+          const { clientX } = e;
+          const { innerWidth } = window;
+          const xPos = (clientX / innerWidth) - 0.5;
+
+          gsap.to(imageRef.current, {
+            x: xPos * 340,
+            duration: 1.2,
+            ease: "power4.out",
+            onUpdate: updateClipPath
+          });
+
+          gsap.to([textBlackRef.current, textWhiteRef.current], {
+            x: xPos * 220,
+            duration: 1.4,
+            ease: "power3.out",
+            onUpdate: updateClipPath
           });
         };
 
-        setTimeout(updateClipPath, 100);
+        window.addEventListener("mousemove", handleMouseMove);
 
-        if (footerRef.current) {
-          gsap.from(footerRef.current.children, {
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "40% 50%",
-              toggleActions: "play none none none",
-            },
-            y: 30,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power3.out",
-          });
-        }
+        return () => {
+          window.removeEventListener("mousemove", handleMouseMove);
+          window.removeEventListener("resize", updateClipPath);
+        };
+      }
 
-        window.addEventListener("resize", updateClipPath);
+      return () => window.removeEventListener("resize", updateClipPath);
+    });
 
-        if (!isMobile) {
-          const handleMouseMove = (e: MouseEvent) => {
-            const { clientX } = e;
-            const { innerWidth } = window;
-            const xPos = (clientX / innerWidth) - 0.5;
+    return () => ctx.revert();
+  }, [isMobile]);
 
-            gsap.to(imageRef.current, {
-              x: xPos * 340,
-              duration: 1.2,
-              ease: "power4.out",
-              onUpdate: updateClipPath
-            });
-
-            gsap.to([textBlackRef.current, textWhiteRef.current], {
-              x: xPos * 220,
-              duration: 1.4,
-              ease: "power3.out",
-              onUpdate: updateClipPath
-            });
-          };
-
-          window.addEventListener("mousemove", handleMouseMove);
-          
-          return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("resize", updateClipPath);
-          };
-        }
-
-        return () => window.removeEventListener("resize", updateClipPath);
-      });
-
-      return () => ctx.revert();
-    }, [isMobile]);
-
-  const RenderText = ({ colorClass, reference }: { 
-    colorClass: string, 
-    reference: React.RefObject<HTMLDivElement | null> 
+  const RenderText = ({ colorClass, reference }: {
+    colorClass: string,
+    reference: React.RefObject<HTMLDivElement | null>
   }) => (
-    <div 
+    <div
       ref={reference}
       className={`absolute bottom-[18vh] md:bottom-auto left-[5vw] md:left-[45%] z-20 pointer-events-none select-none ${colorClass} whitespace-nowrap`}
     >
@@ -105,12 +105,12 @@ const ContactSection: React.FC = () => {
   );
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen flex flex-col justify-between overflow-hidden grid-container">
+    <section id="contact" ref={containerRef} className="relative w-full h-screen flex flex-col justify-between overflow-hidden grid-container">
       <div className="relative grow flex items-center justify-center">
-        <div className="relative w-full max-w-6xl h-full flex items-center md:px-10">          
+        <div className="relative w-full max-w-6xl h-full flex items-center md:px-10">
           <RenderText colorClass="text-black" reference={textBlackRef} />
-          <div 
-            ref={imageRef} 
+          <div
+            ref={imageRef}
             className="relative w-[55%] aspect-4/3 z-10 overflow-hidden"
           >
             <Image
@@ -124,30 +124,38 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
 
-      <div ref={footerRef} className="grid-layout w-full items-end pb-20 md:pb-8 z-30">
+      <div ref={footerRef} className="grid-layout w-full items-end pb-20 md:pb-8 z-30 spacing-primary">
         <div className="col-span-6 md:col-span-2 col-start-1 flex flex-row justify-between md:flex-col md:justify-start">
-          <p className="text-sm uppercase font-medium">Vaasankatu 8,</p>
-          <p className="text-sm uppercase font-medium">00500 Helsinki</p>
+          <a href="https://maps.app.goo.gl/wUYm2ZPjUj6wvgmY9" className="">
+            <p className="text-sm uppercase font-medium">Vaasankatu 8,</p>
+            <p className="text-sm uppercase font-medium">00500 Helsinki</p>
+          </a>
+          <a href="mailto:info@blondiepizza.fi" className="text-sm uppercase font-medium underline">info@blondiepizza.fi</a>
         </div>
-        
+
         <div className="col-span-6 md:col-span-4 col-start-1 md:col-start-5 flex flex-col text-sm uppercase">
           <div className="flex justify-between">
-            <span>Tue-Sat</span>
-            <span>11.30-22</span>
+            <span>Mon</span>
+            <span>CLOSED</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Tue-Fri</span>
+            <span>11-22</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Sat</span>
+            <span>12-22</span>
           </div>
           <div className="flex justify-between">
             <span>Sun</span>
             <span>13-19</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Mon</span>
-            <span>CLOSED</span>
           </div>
         </div>
 
         <div className="col-span-6 flex flex-row md:flex-col justify-between md:justify-start md:col-span-2 md:col-start-11 text-right text-sm uppercase">
           <p>Card only</p>
           <p>No reservation</p>
+          <a href="https://www.instagram.com/blondievaasankatu/" className="text-sm uppercase font-medium">Find us on <span className="underline">Instagram</span></a>
         </div>
       </div>
     </section>

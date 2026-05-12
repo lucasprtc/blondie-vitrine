@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react"; 
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
@@ -16,7 +16,7 @@ const AboutSection = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=200%", 
+          end: "+=200%",
           pin: true,
           scrub: 0.5,
           snap: {
@@ -29,46 +29,47 @@ const AboutSection = () => {
       });
 
       // --- Animation STEP 2 ---
-      tl.from(".line-2", { 
+      tl.from(".line-2", {
         opacity: 0,
-        height: 0, 
+        height: 0,
         duration: 0.8,
-        ease: "power2.inOut" 
+        ease: "power2.inOut"
       })
-      .from(".food-left", { x: -300, opacity: 0, rotation: -45, duration: 1 }, "<")
-      .from(".food-right", { x: 300, opacity: 0, rotation: 45, duration: 1 }, "<")
-      .from(".food-top", { y: -300, opacity: 0, duration: 1 }, "<")
-      .from(".food-bottom", { y: 300, opacity: 0, duration: 1 }, "<")
+        .from(".food-left", { x: -300, opacity: 0, rotation: -45, duration: 1 }, "<")
+        .from(".food-right", { x: 300, opacity: 0, rotation: 45, duration: 1 }, "<")
+        .from(".food-top", { y: -300, opacity: 0, duration: 1 }, "<")
+        .from(".food-bottom", { y: 300, opacity: 0, duration: 1 }, "<")
 
-      // --- Animation STEP 3 ---
-      .from(".line-3", { 
-        opacity: 0,
-        height: 0,  
-        duration: 0.8,
-        ease: "power2.inOut" 
-      })
-      .from(".step3-img", {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.6,
-        stagger: 0.2,
-        ease: "power1.out"
-      }, "<");
-        
+        // --- Animation STEP 3 ---
+        .from(".line-3", {
+          opacity: 0,
+          height: 0,
+          duration: 0.8,
+          ease: "power2.inOut"
+        })
+        .from(".step3-img", {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: "power1.out"
+        }, "<");
+
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
+      id="about"
       className="h-screen w-full flex items-center justify-center overflow-hidden relative"
     >
       {/* step 1 images */}
       <img src="/picture/about-5.png" alt="" className="absolute top-8 left-[54vw] w-[16vh] lg:w-[10vw]" />
       <img src="/picture/about-2.png" alt="" className="absolute bottom-8 lg:bottom-12 left-[12vw] md:left-[25vw] w-[16vh] lg:w-[10vw]" />
- 
+
       {/* step 2 images */}
       <img src="/food/pepperoni.png" alt="" className="food-left absolute top-[16vh] -left-[60px] lg:-left-[3vw] w-[100px] lg:w-44 h-auto z-10" />
       <img src="/food/origano.png" alt="" className="food-top absolute -top-[12vh] lg:-top-[16vh] left-[35vw] w-[110px] lg:w-[180px] h-auto rotate-180 z-10" />

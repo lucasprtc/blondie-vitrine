@@ -71,21 +71,21 @@ const ReviewSection = () => {
                 toggleActions: "play none none none",
             }
         });
-    }, { scope: containerRef }); 
-    
+    }, { scope: containerRef });
+
     return (
         <section ref={containerRef} className="mt-10  flex flex-col justify-center items-center h-screen relative overflow-hidden">
-            <h2 className="text-2xl lg:text-5xl mb-[5vh]">
+            <h2 className="text-2xl lg:text-5xl mb-[5vh] spacing-primary">
                 Your Words, <span className="font-secondary">our pride</span>
             </h2>
 
             <div className="lg:px-20 absolute top-[6vh] md:top-[4vh] left-0 w-full flex justify-between">
                 {topReviews.map((review, index) => (
                     <div key={`top-${index}`} style={{ transform: `rotate(${review.degree}deg)` }} className="review-card-anim  ">
-                        <ReviewCard 
-                            description={review.description} 
-                            author={review.name} 
-                            rotation={review.degree} 
+                        <ReviewCard
+                            description={review.description}
+                            author={review.name}
+                            rotation={review.degree}
                         />
                     </div>
                 ))}
@@ -94,10 +94,10 @@ const ReviewSection = () => {
             <div className="md:max-w-[70vw] absolute bottom-[6vh] md:bottom-[8vh] md:left-1/2 md:-translate-x-1/2 w-full flex justify-between">
                 {bottomReviews.map((review, index) => (
                     <div key={`bottom-${index}`} style={{ transform: `rotate(${review.degree}deg)` }} className="review-card-anim">
-                        <ReviewCard 
-                            description={review.description} 
-                            author={review.name} 
-                            rotation={review.degree} 
+                        <ReviewCard
+                            description={review.description}
+                            author={review.name}
+                            rotation={review.degree}
                         />
                     </div>
                 ))}

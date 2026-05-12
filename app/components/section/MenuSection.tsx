@@ -85,7 +85,7 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
         }
     }, []);
 
-    const { contextSafe } = useGSAP({ scope: mainWrapperRef  });
+    const { contextSafe } = useGSAP({ scope: mainWrapperRef });
 
     const onEnter = contextSafe(() => {
         gsap.set(mainWrapperRef.current, { zIndex: 50 });
@@ -138,7 +138,7 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
                 onMouseLeave={onLeave}
                 onMouseMove={onMouseMove}
             ></div>
-            <div 
+            <div
                 className="group w-full flex justify-between h-full py-6 relative cursor-pointer z-0"
 
             >
@@ -152,8 +152,8 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
                 </div>
 
                 <div className="flex flex-col justify-between z-10">
-                    <h3 className="text-xl md:text-3xl uppercase font-primary">{pizza.title}</h3>
-                    <div className="flex flex-col md:flex-row gap-1 md:gap-4 font-secondary text-base md:text-lg">
+                    <h3 className="text-xl md:text-3xl uppercase font-primary spacing-primary">{pizza.title}</h3>
+                    <div className="flex flex-col md:flex-row gap-1 md:gap-4 font-secondary text-base md:text-lg spacing-primary">
                         <p>{pizza.ingredients}</p>
                         <p className="font-bold">{pizza.smallPrice}€ | {pizza.largePrice}€</p>
                     </div>
@@ -172,10 +172,10 @@ const MenuItem = ({ pizza }: { pizza: Pizza }) => {
 const MenuSection = () => {
     return (
         <section id="menu" className="grid-container grid-layout mt-10 lg:mt-[100px] lg:pb-[100px] px-4 overflow-hidden">
-            <TextAnimation className="col-span-12 lg:mb-5 title leading-10">
+            <TextAnimation className="col-span-12 lg:mb-5 title leading-10 spacing-primary">
                 <h3 className="">Come taste our <span className="font-secondary italic">Pizza</span></h3>
             </TextAnimation>
-            
+
             <div className="col-span-12 flex flex-col border-t border-black">
                 {pizzas.map((pizza) => (
                     <MenuItem key={pizza.id} pizza={pizza} />

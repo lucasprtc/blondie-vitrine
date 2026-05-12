@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {  
+@theme {
   --font-primary: var(--font-eb-garamond);
   --font-secondary: var(--font-helvetica-neue);
 
@@ -30,9 +30,14 @@
   .font-primary {
     font-family: var(--font-helvetica-neue);
   }
+
   .font-secondary {
-    font-family: var(--font-eb-garamond); 
+    font-family: var(--font-eb-garamond);
   }
+}
+
+.spacing-primary {
+  @apply tracking-[-0.03em];
 }
 
 .grid-layout {
@@ -40,8 +45,8 @@
 }
 
 .grid-layout.desktop {
-    @apply lg:gap-0;
-  }
+  @apply lg:gap-0;
+}
 
 .grid-container {
   @apply px-4 md:px-8;
@@ -59,7 +64,7 @@
 
 .line {
   @apply pb-[0.1em];
-} 
+}
 
 .title {
   @apply text-2xl lg:text-3xl text-right tracking-[-0.03em];

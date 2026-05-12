@@ -66,7 +66,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   }, [delay, duration, start]);
 
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef} style={{ opacity: 0 }} className={className}>
       {children || text}
     </div>
   );
